@@ -7,17 +7,18 @@ from discord.ext import commands, tasks
 client = commands.Bot(command_prefix='-', self_bot=True)
 client.remove_command(name='help')
 ## ================================ [ STARTED ] ============================== ##
-async def ubah_status():
-    statuses = ["Bimm", "Lynzzx", "BlackShadow", "Bimzzx", "Lynzzx", "BlackShadow"]
-    while not client.is_closed():
-    	status = random.choice(statuses)
-    	await client.change_presence(activity = discord.Streaming(name=status, url="https://www.twitch.tv/bimzz19"))
-    	await asyncio.sleep(3)
-    	client.loop.create_task(ubah_status())
+async def xxx():
+    statuses = [f"BlackShadow?!", f"Yeahh, im Bimzzx!!", f"Subscribe YouTube Bimzz"]
+    status = random.choice(statuses)
+    await client.change_presence(activity = discord.Streaming(name=status, url="https://www.twitch.tv/bimzz19"))
+
+@tasks.loop(seconds=9)
+async def xontol():
+    await xxx()
 
 @client.event
 async def on_ready():
-    print(f"------------------ [ SELFBOT STATUS ] -----------------")
+    print(f"-------------------- [ BOT STATUS ] -------------------")
     time.sleep(0.2)
     print(f"-------------------------------------------------------")
     print(f"[+] Connected to {client.user.name}#{client.user.discriminator} [{client.user.id}]")
@@ -28,8 +29,7 @@ async def on_ready():
     	print(guild.name, " [", guild.id, "]")
     	print(f"-------------------------------------------------------")
     await client.wait_until_ready()
-    ubah_status()
-
+    xontol.start()
 
 
 xontol.xontol()
